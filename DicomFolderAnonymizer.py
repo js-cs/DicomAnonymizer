@@ -16,8 +16,7 @@ for file_ in os.listdir(os.curdir):
                         'PatientSize','PatientWeight','PatientAddress','InsurancePlanIdentification',
                         'MilitaryRank','BranchOfService','PatientTelephoneNumbers',
                         'AdditionalPatientHistory']
-        
-        
+          
         """
         You can add or remove DICOM data to delete  based on 'Keywords' of 
         http://dicom.nema.org/medical/dicom/current/output/pdf/part06.pdf
