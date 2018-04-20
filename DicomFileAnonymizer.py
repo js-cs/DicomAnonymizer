@@ -14,11 +14,11 @@ data_elements = ['PatientName','PatientID','IssuerOfPatientID','TypeOfPatientID'
                  'MilitaryRank','BranchOfService','PatientTelephoneNumbers',
                  'AdditionalPatientHistory']
                 
-                 """
-                 You can add or remove elements to delete  based on 'keywords' of 
-                 http://dicom.nema.org/medical/dicom/current/output/pdf/part06.pdf
-                 (personal information (0010,xxxx) pag. 29-31) 
-                 """
+"""
+You can add or remove elements to delete  based on 'keywords' of 
+http://dicom.nema.org/medical/dicom/current/output/pdf/part06.pdf
+(personal information (0010,xxxx) pag. 29-31) 
+"""
 
 for element in data_elements:
     if element in dataset:
