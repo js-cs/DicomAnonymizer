@@ -13,9 +13,9 @@ data_elements = ['PatientName','PatientID','IssuerOfPatientID','TypeOfPatientID'
                  'PatientSize','PatientWeight','PatientAddress','InsurancePlanIdentification',
                  'MilitaryRank','BranchOfService','PatientTelephoneNumbers',
                  'AdditionalPatientHistory']
-                
+
 """
-You can add or remove elements to delete  based on 'keywords' of 
+You can add or remove DICOM data to delete  based on 'Keywords' of 
 http://dicom.nema.org/medical/dicom/current/output/pdf/part06.pdf
 (personal information (0010,xxxx) pag. 29-31) 
 """
@@ -23,3 +23,4 @@ http://dicom.nema.org/medical/dicom/current/output/pdf/part06.pdf
 for element in data_elements:
     if element in dataset:
         delattr(dataset, element)
+dataset.save_as(path)
