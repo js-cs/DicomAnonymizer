@@ -14,6 +14,8 @@ data_elements = ['PatientName','PatientID','IssuerOfPatientID','TypeOfPatientID'
                  'MilitaryRank','BranchOfService','PatientTelephoneNumbers',
                  'AdditionalPatientHistory']
 
+#
+
 for element in data_elements:
     if element in dataset:
         delattr(dataset, element)
