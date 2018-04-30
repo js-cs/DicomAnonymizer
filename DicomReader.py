@@ -1,12 +1,12 @@
 import pydicom
-from pydicom.data import get_testdata_files
 from pydicom.errors import InvalidDicomError
 
-folder = '/Users/jscs/DICOM/Untitled.rtf' #Cualquier archivo no dicom
+file_ = "/Users/jscs/DICOM/Untitled.rtf"
+def DicomReader(file_):
+    try:
+        pydicom.dcmread(file_)
+    except InvalidDicomError:
+        print('Not Dicom file')
+    else:
+        print('Dicom file')
 
-try:
-    pydicom.dcmread(folder)
-except InvalidDicomError: 
-    print('sfs')
-else:
-    print('woj') 
