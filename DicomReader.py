@@ -5,6 +5,6 @@ def DicomReader(file_):
     try:
         pydicom.dcmread(file_)
     except InvalidDicomError:
-        print('Not Dicom file')
+        return('Not Dicom file')
     else:
-        print('Dicom file')
+        return('Dicom file')
