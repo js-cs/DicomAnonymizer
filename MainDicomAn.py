@@ -76,5 +76,5 @@ def DicomAnonymizer(path):
     Walking(path, DicomFileAnonymizer)
 
 
-
+print('Hola Mundo')
 recursiveWalking('/Users/jscs/test/DICOM')
