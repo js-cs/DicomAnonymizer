@@ -1,10 +1,16 @@
+import os
 import zipfile
+import patoolib
 
-path = '/Users/jscs/Downloads/df6b126ff72ec87952ad820a4babcead64e2.pdf' #'/Users/jscs/Downloads/do not hesitate.zip'
-if zipfile.is_zipfile(path):
-    zip_ref = zipfile.ZipFile(path, 'r')
-    zip_ref.extractall('/Users/jscs/Downloads')
-    zip_ref.close()
+inputFolder = '/Users/jscs/Downloads/test/faa.rar' 
+outputFolder = '/Users/jscs/Downloads/test'
 
-#Work on directories and folders of execution 
-
+def unpack(inputFolder, outputFolder):
+    if not (os.path.isdir(inputFolder)):
+        if zipfile.is_zipfile(inputFolder):
+            zip_ref = zipfile.ZipFile(inputFolder, 'r')
+            return zip_ref.extractall(outputFolder)
+            return zip_ref.close()
+        else:
+            patoolib.extract_archive(inputFolder, outdir= outputFolder)
+            
