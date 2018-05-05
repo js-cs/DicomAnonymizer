@@ -11,6 +11,6 @@ def unpack(inputFolder, outputFolder):
             zip_ref = zipfile.ZipFile(inputFolder, 'r')
             return zip_ref.extractall(outputFolder)
             return zip_ref.close()
-        else:
+        else: #better an elif with the reader condition like 10 line for zip
             patoolib.extract_archive(inputFolder, outdir= outputFolder)
             
