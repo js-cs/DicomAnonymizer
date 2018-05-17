@@ -135,6 +135,8 @@ def dicom_anonymizer(directory_path):
     print('--> Successful anonymization')
 
 
-directory_path_test = '/Users/jscs/Downloads/test'
-
-dicom_anonymizer(directory_path_test)
+"""
+Example:
+    >>> directory_path_test = '/Users/jscs/Downloads/test'
+    >>> dicom_anonymizer(directory_path_test)
+"""
