@@ -46,10 +46,13 @@ def read_unpack(file_path):
             '.jar', '.cbz', '.rz', '.z', '.arc', '.ace', '.dmg', '.lz', '.lzma', '.lz', '.lrz', '.iso', '.dms', '.a']
     output_folder = os.path.abspath(os.path.join(file_path, os.pardir))
     if any(file_path.lower().endswith(end) for end in ends):
-        if patoolib.extract_archive(file_path, outdir=output_folder):
-            return print(file_path, "successfully unpacked")
-        else:
-            raise ValueError('File extension is not supported for your program', file_path)
+        try:
+            nib.load(file_path)
+        except ImageFileError:
+            if patoolib.extract_archive(file_path, outdir=output_folder):
+                return print(file_path, "successfully unpacked")
+            else:
+                raise ValueError('File extension is not supported for your program', file_path)
     else:
         pass
 
@@ -59,7 +62,6 @@ def read_delete(file_path):
     Detect and remove packed files
     :param file_path: file to remove
     :return: Message of deleted packed file, nifti-dicom recognition, or no file detected
-
     """
     ends = ['.rar', '.7z', '.dmg', '.gz', '.iso', '.tar', '.zip', '.bz2', '.xz', '.wim', '.swm', '.esd', '.cb7', '.cbr',
             '.jar', '.cbz', '.rz', '.z', '.arc', '.ace', '.dmg', '.lz', '.lzma', '.lz', '.lrz', '.iso', '.dms', '.a']
@@ -91,7 +93,7 @@ def dicom_reader(file_path):
 
 def dicom_file_anonymizer(path):
     """Args:
-           path(str): The path of the DICOM file 
+           path(str): The path of the DICOM file
         Returns:
             DICOM file saved without personal information"""
 
@@ -125,14 +127,20 @@ def dicom_file_anonymizer(path):
         pass
 
 
-def dicom_anonymizer(directory_path):
-    print('--> Searching compressed files and unpacking')
-    walking(directory_path, read_unpack)
-    print('--> Searching compressed files unpacked and deleting')
-    walking(directory_path, read_delete)
-    print('--> Searching dicom files and anonymizing')
-    walking(directory_path, dicom_file_anonymizer)
-    print('--> Successful anonymization')
+def dicom_anonymizer(path):
+    if os.path.isfile(path):
+        if dicom_reader(path):
+            print('--> Anonymizing file')
+            dicom_file_anonymizer(path)
+            return '--> Successful file anonymization'
+    else:
+        print('--> Searching compressed files and unpacking')
+        walking(path, read_unpack)
+        print('--> Searching compressed files unpacked and deleting')
+        walking(path, read_delete)
+        print('--> Searching dicom files and anonymizing')
+        walking(path, dicom_file_anonymizer)
+        return '--> Successful directory anonymization'
 
 
 """
